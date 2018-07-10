@@ -5,20 +5,15 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.app.sample.chatting.Notifications.NotificationGenerate;
-import com.app.sample.chatting.SharedPreference.TemporaryStorageSharedPreferences;
+import com.app.sample.chatting.NotificationsClass.NotificationGenerate;
+import com.app.sample.chatting.SharedPreferenceClass.TemporaryStorageSharedPreferences;
 import com.app.sample.chatting.SignalR.Classes.HubMessage;
 import com.app.sample.chatting.SignalR.Interface.HubEventListener;
 import com.app.sample.chatting.ViewModelClasses.UserNotificationViewModel;
 import com.google.gson.JsonElement;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ConfirmFriendRequestEvent implements HubEventListener
 {

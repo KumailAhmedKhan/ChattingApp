@@ -5,8 +5,7 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.app.sample.chatting.Activity.ActivityChatDetails;
-import com.app.sample.chatting.SharedPreference.TemporaryStorageSharedPreferences;
+import com.app.sample.chatting.SharedPreferenceClass.TemporaryStorageSharedPreferences;
 import com.app.sample.chatting.SignalR.Classes.HubMessage;
 import com.app.sample.chatting.SignalR.Interface.HubEventListener;
 import com.google.gson.JsonElement;
@@ -14,17 +13,7 @@ import com.google.gson.JsonElement;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 public class DisconnectEvent implements HubEventListener {
     TemporaryStorageSharedPreferences temporary=new TemporaryStorageSharedPreferences();

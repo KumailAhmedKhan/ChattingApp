@@ -3,12 +3,10 @@ package com.app.sample.chatting.SignalR.RegisteredEvent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
-import android.util.Log;
 
-import com.app.sample.chatting.Activity.ActivityGroupDetails;
-import com.app.sample.chatting.AsyncTask.GroupChatMessageStatusAsyncTask;
-import com.app.sample.chatting.Notifications.NotificationGenerate;
-import com.app.sample.chatting.SharedPreference.TemporaryStorageSharedPreferences;
+import com.app.sample.chatting.ActivityClasses.ActivityGroupDetails;
+import com.app.sample.chatting.NotificationsClass.NotificationGenerate;
+import com.app.sample.chatting.SharedPreferenceClass.TemporaryStorageSharedPreferences;
 import com.app.sample.chatting.SignalR.Classes.HubMessage;
 import com.app.sample.chatting.SignalR.Interface.HubEventListener;
 import com.app.sample.chatting.ViewModelClasses.GroupChatViewModel;

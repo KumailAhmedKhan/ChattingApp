@@ -1,26 +1,16 @@
 package com.app.sample.chatting.SignalR.Services;
 
-import android.app.Notification;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
-import android.os.AsyncTask;
-import android.os.Binder;
-import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.app.sample.chatting.Activity.ActivityMain;
-import com.app.sample.chatting.AsyncTask.UserNotificationAsyncTask;
-import com.app.sample.chatting.R;
-import com.app.sample.chatting.SharedPreference.TemporaryStorageSharedPreferences;
+import com.app.sample.chatting.SharedPreferenceClass.TemporaryStorageSharedPreferences;
 import com.app.sample.chatting.SignalR.Classes.HubMessage;
 import com.app.sample.chatting.SignalR.Classes.WebSocketHubConnection;
 import com.app.sample.chatting.SignalR.Interface.HubConnection;
@@ -29,8 +19,6 @@ import com.app.sample.chatting.SignalR.Interface.HubEventListener;
 import com.app.sample.chatting.SignalR.RegisteredEvent.CancelFriendRequestEvent;
 import com.app.sample.chatting.SignalR.RegisteredEvent.ConfirmFriendRequestEvent;
 import com.app.sample.chatting.SignalR.RegisteredEvent.ConnectEvent;
-import com.app.sample.chatting.SignalR.RegisteredEvent.FriendsNowEvent;
-import com.app.sample.chatting.SignalR.RegisteredEvent.SendFriendRequestEvent;
 import com.app.sample.chatting.SignalR.RegisteredEvent.UseronlineEvent;
 import com.app.sample.chatting.SignalR.RegisteredEvent.DisconnectEvent;
 import com.app.sample.chatting.SignalR.RegisteredEvent.GetOnlineUserEvent;
@@ -39,7 +27,7 @@ import com.app.sample.chatting.SignalR.RegisteredEvent.SendMessageToGroupEvent;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import com.app.sample.chatting.URL.httpUrl;
+import com.app.sample.chatting.URLClass.HTTPURL;
 
 public class SignalRConnectionService extends Service implements HubConnectionListener,HubEventListener {
 
@@ -48,9 +36,9 @@ public class SignalRConnectionService extends Service implements HubConnectionLi
     public Context context;
     public static boolean SignalRConnectionFlag;
     TemporaryStorageSharedPreferences temp=new TemporaryStorageSharedPreferences() ;
-    static httpUrl httpUrl=new httpUrl();
+    static HTTPURL HTTPURL =new HTTPURL();
     private String authHeader = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Ijc5NzhjMjI3LWViMGItNGMwOS1iYWEyLTEwYmE0MjI4YWE4OSIsImNlcnRzZXJpYWxudW1iZXIiOiJtYWNfYWRkcmVzc19vZl9waG9uZSIsInNlY3VyaXR5U3RhbXAiOiJlMTAxOWNiYy1jMjM2LTQ0ZTEtYjdjYy0zNjMxYTYxYzMxYmIiLCJuYmYiOjE1MDYyODQ4NzMsImV4cCI6NDY2MTk1ODQ3MywiaWF0IjoxNTA2Mjg0ODczLCJpc3MiOiJCbGVuZCIsImF1ZCI6IkJsZW5kIn0.QUh241IB7g3axLcfmKR2899Kt1xrTInwT6BBszf6aP4";
-    private HubConnection connection=new WebSocketHubConnection(httpUrl.getHubURl(), "", this);;
+    private HubConnection connection=new WebSocketHubConnection(HTTPURL.getHubURl(), "", this);;
 
 
 

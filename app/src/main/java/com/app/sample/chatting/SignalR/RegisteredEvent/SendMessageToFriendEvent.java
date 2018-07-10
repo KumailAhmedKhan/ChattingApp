@@ -5,16 +5,11 @@ import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.app.sample.chatting.Activity.ActivityChatDetails;
-import com.app.sample.chatting.AsyncTask.FriendChatMessageStatusAsyncTask;
-import com.app.sample.chatting.Fragments.ChatsFragment;
-import com.app.sample.chatting.Notifications.NotificationGenerate;
-import com.app.sample.chatting.SharedPreference.TemporaryStorageSharedPreferences;
+import com.app.sample.chatting.ActivityClasses.ActivityChatDetails;
+import com.app.sample.chatting.NotificationsClass.NotificationGenerate;
+import com.app.sample.chatting.SharedPreferenceClass.TemporaryStorageSharedPreferences;
 import com.app.sample.chatting.SignalR.Classes.HubMessage;
 import com.app.sample.chatting.SignalR.Interface.HubEventListener;
-import com.app.sample.chatting.SignalR.Services.SignalRConnectionService;
-import com.app.sample.chatting.ViewModelClasses.FriendChatViewModel;
-import com.app.sample.chatting.ViewModelClasses.FriendsRecentChatViewModel;
 import com.google.gson.JsonElement;
 
 import org.json.JSONException;

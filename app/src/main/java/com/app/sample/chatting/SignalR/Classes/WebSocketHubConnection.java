@@ -1,15 +1,11 @@
 package com.app.sample.chatting.SignalR.Classes;
 
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.app.sample.chatting.SharedPreference.TemporaryStorageSharedPreferences;
 import com.app.sample.chatting.SignalR.Interface.HubConnection;
 import com.app.sample.chatting.SignalR.Interface.HubConnectionListener;
 import com.app.sample.chatting.SignalR.Interface.HubEventListener;

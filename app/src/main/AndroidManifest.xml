@@ -15,7 +15,7 @@
         android:label="Lycos Communicator"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ActivitySplash"
+        <activity android:name=".ActivityClasses.ActivitySplash"
             android:noHistory="true">
 
             <intent-filter>
@@ -26,7 +26,7 @@
         </activity>
 
         <receiver
-            android:name=".CheckConnectionByBroadCastReceiver.CheckConnection"
+            android:name=".CheckConnectionByBroadCastReceiverClass.CheckConnection"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -34,30 +34,30 @@
         </receiver>
 
         <activity
-            android:name=".Activity.ActivityMain"
+            android:name=".ActivityClasses.ActivityMain"
             android:launchMode="singleTop" />
         <activity
-            android:name=".Activity.ActivityChatDetails"
+            android:name=".ActivityClasses.ActivityChatDetails"
             android:label="List"
             android:launchMode="singleTop" />
         <activity
-            android:name=".Activity.ActivitySelectFriend"
+            android:name=".ActivityClasses.ActivitySelectFriend"
             android:label="Select Friend"
             android:launchMode="singleTop" />
         <activity
-            android:name=".Activity.ActivityFriendDetails"
+            android:name=".ActivityClasses.ActivityFriendDetails"
             android:label="Friend Details"
             android:launchMode="singleTop" />
         <activity
-            android:name=".Activity.ActivityGroupDetails"
+            android:name=".ActivityClasses.ActivityGroupDetails"
             android:label="Group Details"
             android:launchMode="singleTop" />
         <activity
-            android:name=".Activity.ActivityRegister"
+            android:name=".ActivityClasses.ActivityRegister"
             android:launchMode="singleTop"
             android:noHistory="true"/>
         <activity
-            android:name=".Activity.ActivityLogin"
+            android:name=".ActivityClasses.ActivityLogin"
             android:launchMode="singleTop"
             android:noHistory="true"/>
 
@@ -73,9 +73,9 @@
 
 
 
-        <activity android:name=".Activity.FriendsChatActivity" />
-        <activity android:name=".Activity.UserNotificationsActivity" />
-        <activity android:name=".Activity.NewUserActivity">
+        <activity android:name=".ActivityClasses.FriendsChatActivity" />
+        <activity android:name=".ActivityClasses.UserNotificationsActivity" />
+        <activity android:name=".ActivityClasses.NewUserActivity">
 
         </activity>
     </application>
