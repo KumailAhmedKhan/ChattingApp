@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.app.sample.chatting">
+    xmlns:tools="http://schemas.android.com/tools"
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-sdk tools:overrideLibrary="android.support.constraint"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/lycoslogo"
+        android:label="Lycos Communicator"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activity.ActivitySplash"
+            android:noHistory="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".CheckConnectionByBroadCastReceiver.CheckConnection"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".Activity.ActivityMain"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Activity.ActivityChatDetails"
+            android:label="List"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Activity.ActivitySelectFriend"
+            android:label="Select Friend"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Activity.ActivityFriendDetails"
+            android:label="Friend Details"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Activity.ActivityGroupDetails"
+            android:label="Group Details"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Activity.ActivityRegister"
+            android:launchMode="singleTop"
+            android:noHistory="true"/>
+        <activity
+            android:name=".Activity.ActivityLogin"
+            android:launchMode="singleTop"
+            android:noHistory="true"/>
+
+        <service
+            android:name=".SignalR.Services.SignalRConnectionService"
+            android:enabled="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name=".SignalR.Services.SignalRConnectionService"/>
+            </intent-filter>
+        </service>
+
+
+
+
+        <activity android:name=".Activity.FriendsChatActivity" />
+        <activity android:name=".Activity.UserNotificationsActivity" />
+        <activity android:name=".Activity.NewUserActivity">
+
+        </activity>
+    </application>
+
+</manifest>

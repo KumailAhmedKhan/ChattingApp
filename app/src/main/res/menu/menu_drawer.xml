@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group >
+
+        <item
+            android:id="@+id/nav_messages"
+            android:icon="@drawable/ic_event"
+            android:title="Friends"/>
+        <item
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/ic_headset"
+            android:title="Groups" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_headset"
+            android:title="Recent Chat" />
+
+
+    </group>
+
+    <item tools:ignore="About US">
+        <menu>
+
+            <item
+                android:icon="@drawable/ic_forum"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>

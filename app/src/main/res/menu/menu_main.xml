@@ -1,0 +1,20 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+
+    <item android:id="@+id/action_search1"
+        android:title="search"
+        android:icon="@drawable/ic_menu_search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom"
+        android:visible="false">
+
+    </item>
+
+
+    <item android:id="@+id/action_notif"
+        android:title="Notifications"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_notif"
+        app:showAsAction="always" />
+</menu>
