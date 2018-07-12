@@ -76,11 +76,9 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-       // connection=new WebSocketHubConnection( HTTPURL.getHubURl(),"",this);
         super.onCreate(savedInstanceState);
         this.context=getApplicationContext();
         setContentView(R.layout.activity_group_details);
-
         try {
             connection=new WebSocketHubConnection( HTTPURL.getHubURl(),"",this);
             LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(MessageReceiver, new IntentFilter("FriendFromGroupMessage"));
@@ -103,7 +101,6 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
             Intent intent = getIntent();
             Bundle bd = intent.getExtras();
             groupid = String.valueOf(bd.get("KEY_GID"));
-
             groupName = String.valueOf(bd.get("KEY_GNAME"));
             String ActiveModal = "G_" + groupid;
             temp.savePreferences(context, "ActiveModalGroup", ActiveModal);
@@ -122,8 +119,7 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
                         context.startActivity(new Intent(context,ActivitySplash.class));
                 }
 
-
-            initToolbar();
+                initToolbar();
             iniComponen();
             madapter=new GroupChatAdapter(this,new ArrayList<GroupChatViewModel>());
             listview.setAdapter(madapter);
@@ -357,7 +353,6 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
         try
         {
             madapter.setchat(data);
-            //message.addAll(data);
             listview.setSelection(madapter.getCount()-5);
             listview.post(new Runnable()
             {

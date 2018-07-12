@@ -45,8 +45,6 @@ public class ActivityLogin extends AppCompatActivity {
             registerNetworkBroadcast();
             hideKeyboard();
             final CheckConnection checkConnection=new CheckConnection();
-            // for system bar in lollipop
-            // Tools.systemBarLolipop(this);
             Context mcontext = this.getApplicationContext();
             tempo = temp.getPreferences(mcontext, "Logindata");
             if(tempo.isEmpty())

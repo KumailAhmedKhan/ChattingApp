@@ -36,8 +36,8 @@ public class ActivitySplash extends AppCompatActivity
     TemporaryStorageSharedPreferences temp= new TemporaryStorageSharedPreferences();
     public String tempo="99";
     public int temporary=99;
-    public static final String CUSTOM_INTENT = "com.app.sample.chatting.SignalR.Classes";
-    //CheckingSignalRAsyncTask checkingSignalRAsyncTask=new CheckingSignalRAsyncTask(this);
+
+
 
     BroadcastReceiver mMessageReceiver = new BroadcastReceiver()
     {
@@ -75,7 +75,7 @@ public class ActivitySplash extends AppCompatActivity
             LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(
                     mMessageReceiver, new IntentFilter("NewActivity"));
             broadcastReceiver=new CheckConnection();
-            //registerNetworkBroadcast();
+
 
             final int checkconnectionflag=checkConnection.connnectioncheck(getApplicationContext());
         try {

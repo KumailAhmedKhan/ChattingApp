@@ -50,26 +50,17 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
 {
 
     public static String KEY_FRIEND     = "com.app.sample.chatting.FRIEND";
-    public static String KEY_SNIPPET   = "com.app.sample.chatting.SNIPPET";
-    public static String KEY_FNAME   = "com.app.sample.chatting.FNAME";
-    public static String KEY_FID   = "com.app.sample.chatting.FID";
     private Button btn_send;
     private EditText et_content;
     public  FriendsChatAdapter madapter;
     public com.app.sample.chatting.AsyncTaskClasses.FriendChatMessageStatusAsyncTask messagestatus=new com.app.sample.chatting.AsyncTaskClasses.FriendChatMessageStatusAsyncTask();
     private ListView listview;
     private ActionBar actionBar;
-    private FriendsViewModel friend;
     private  List<FriendChatViewModel> message=new ArrayList<>();
     private View parent_view;
     public Context context;
-    private static boolean flag=true;
     TemporaryStorageSharedPreferences temp=new TemporaryStorageSharedPreferences() ;
-    private String authHeader = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Ijc5NzhjMjI3LWViMGItNGMwOS1iYWEyLTEwYmE0MjI4YWE4OSIsImNlcnRzZXJpYWxudW1iZXIiOiJtYWNfYWRkcmVzc19vZl9waG9uZSIsInNlY3VyaXR5U3RhbXAiOiJlMTAxOWNiYy1jMjM2LTQ0ZTEtYjdjYy0zNjMxYTYxYzMxYmIiLCJuYmYiOjE1MDYyODQ4NzMsImV4cCI6NDY2MTk1ODQ3MywiaWF0IjoxNTA2Mjg0ODczLCJpc3MiOiJCbGVuZCIsImF1ZCI6IkJsZW5kIn0.QUh241IB7g3axLcfmKR2899Kt1xrTInwT6BBszf6aP4";
-
     HTTPURL HTTPURL =new HTTPURL();
-
-
     private HubConnection connection;
     private BroadcastReceiver broadcastReceiver;
     protected static String FriendID;
@@ -413,7 +404,6 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
         {
             madapter.adaptercleaR();
             madapter.setfriendchat(data);
-            //message.addAll(data);
             listview.setSelection(madapter.getCount() - 1);
             ////////////////////////////////////////////for setting last position//////////////////////////////////////////
             listview.post(new Runnable() {

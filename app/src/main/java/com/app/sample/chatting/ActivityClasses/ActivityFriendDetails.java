@@ -42,15 +42,11 @@ import java.util.Iterator;
 
 public class ActivityFriendDetails extends AppCompatActivity //implements LoaderManager.LoaderCallbacks<String>
 {
-
-    public static final String EXTRA_OBJCT = "com.app.sample.chatting";
     private BroadcastReceiver broadcastReceiver;
     Context context;
     TemporaryStorageSharedPreferences temp=new TemporaryStorageSharedPreferences();
-    private CollapsingToolbarLayout collapsingToolbarLayout;
     private FriendsViewModel friend;
     private View parent_view;
-
     public String getFriendsShipStatus() {
         return FriendsShipStatus;
     }
@@ -69,9 +65,8 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
     String NotificationId;
     String NotificationName;
     String NotificationType;
-    Button FriendShipStatus;
     private ProgressDialog dialogue;
-     //private CheckFriendShipStatusAsyncTask checkFriendShipStatusAsyncTask;
+
     String Name;
     String ID = null;
     @SuppressWarnings("ConstantConditions")
@@ -80,165 +75,15 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_details);
         final Bundle bundle=getIntent().getExtras();
-       // ReceiverId=bundle.getString("ReceiverId");
         ReceiverID=bundle.getLong("ReceiverId");
         ID= String.valueOf(ReceiverID);
         ReceiverId=ID;
-        // getLoaderManager().initLoader(1996, bundle, this).forceLoad();
-        // ReceiverId=bundle.getString("ReceiverId");
         final Intent inte=getIntent();
 
             new CheckFriendShipStatusAsyncTask(getApplicationContext(),inte).execute(ID);
 
 
-        //checkFriendShipStatusAsyncTask=(CheckFriendShipStatusAsyncTask) new CheckFriendShipStatusAsyncTask(getApplicationContext(),inte).execute(ReceiverId);
 
-        //FriendsShipStatus= getFriendsShipStatus();//bundle.getString("FriendshipStatus");
-/*
-                if(FriendsShipStatus.equals("1"))
-                {
-                    //FriendShipStatus.setText("Sending Request");
-                    FriendShipStatus.setVisibility(parent_view.GONE);
-                    ConfirmRequest.setVisibility(View.GONE);
-                    Friends.setVisibility(View.GONE);
-                    CancelFriendRequest.setVisibility(View.VISIBLE);
-                    CancelFriendRequest.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v)
-                        {
-                            if(FriendsShipStatus.equals("1"))
-                            {
-                                cancelFriendRequestAsyncTask=(CancelFriendRequestAsyncTask) new CancelFriendRequestAsyncTask(getApplicationContext(),parent_view).execute(UserId,ReceiverId);
-                                //FriendShipStatus.setVisibility(View.VISIBLE);
-                                //connection.invoke("cancellFriendRequestAsync",conid,RecID);
-                            }
-                        }
-                    });
-                }
-                else if(FriendsShipStatus.equals("2"))
-                {
-                    //FriendShipStatus.setText("Send Friend Request");
-                    FriendShipStatus.setVisibility(View.VISIBLE);
-                    //FriendShipStatus.setVisibility(parent_view.GONE);
-                    ConfirmRequest.setVisibility(View.GONE);
-                    Friends.setVisibility(View.GONE);
-                    CancelFriendRequest.setVisibility(View.GONE);
-                    FriendShipStatus.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(FriendsShipStatus.equals("2"))
-                            {
-                                sendFriendRequestAsyncTask=(SendFriendRequestAsyncTask) new SendFriendRequestAsyncTask(getApplicationContext(),inte,parent_view).execute(UserId,ReceiverId);
-                                //CancelFriendRequest.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    });
-                }
-                else if(FriendsShipStatus.equals("3"))
-                {
-                    FriendShipStatus.setVisibility(View.GONE);
-                    //FriendShipStatus.setVisibility(parent_view.GONE);
-                    ConfirmRequest.setVisibility(View.VISIBLE);
-                    Friends.setVisibility(View.GONE);
-                    CancelFriendRequest.setVisibility(View.GONE);
-                    //FriendShipStatus.setText("Confirm Friend Request");
-
-                    ConfirmRequest.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if(FriendsShipStatus.equals("3"))
-                            {
-                                confirmFriendRequestAsyncTask=(ConfirmFriendRequestAsyncTask)new ConfirmFriendRequestAsyncTask(getApplicationContext(),parent_view).execute(UserId,ReceiverId);
-                            }
-                        }
-                    });
-                }
-                else if(FriendsShipStatus.equals("4"))
-                {
-                    FriendShipStatus.setVisibility(View.GONE);
-                    //FriendShipStatus.setVisibility(parent_view.GONE);
-                    ConfirmRequest.setVisibility(View.GONE);
-                    Friends.setVisibility(View.VISIBLE);
-                    CancelFriendRequest.setVisibility(View.GONE);
-                    //FriendShipStatus.setText("FRIENDS");
-                }
-                else{
-                    Toast.makeText(getApplicationContext(),"Try Again Please Wait",Toast.LENGTH_LONG).show();
-                }
-                Name =  bundle.getString("Name");
-                textView2.setText((bundle.getString("Name")));
-                String Email = bundle.getString("Email");
-                textView3.setText((bundle.getString("Email")));
-               // textView3.setVisibility(View.INVISIBLE);
-                String Phone =  bundle.getString("Phone");
-                textView1.setText(( bundle.getString("Phone")));
-               //textView1.setVisibility(View.INVISIBLE);
-                try
-                {
-                        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(nMessageReceiver, new IntentFilter("CancelFriendRequestNotification"));
-                        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(MessageReceiver, new IntentFilter("SendFriendRequestNotification"));
-                        LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(mMessageReceiver, new IntentFilter("FriendNow"));
-                        parent_view = findViewById(android.R.id.content);
-                        broadcastReceiver=new CheckConnection();
-                        registerNetworkBroadcast();
-
-                        // animation transition
-                        this.context=context;
-                       // ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), EXTRA_OBJCT);
-                        //progressDialog=new ProgressDialog(this);
-                        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-                        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                        getSupportActionBar().setTitle("");
-                    CancelFriendRequest.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v)
-                        {
-                           // if(FriendsShipStatus.contains("1"))
-                            {
-                                cancelFriendRequestAsyncTask=(CancelFriendRequestAsyncTask) new CancelFriendRequestAsyncTask(getApplicationContext(),parent_view).execute(UserId,ReceiverId);
-                                //FriendShipStatus.setVisibility(View.VISIBLE);
-                                //connection.invoke("cancellFriendRequestAsync",conid,RecID);
-                            }
-                        }
-                    });
-                    ConfirmRequest.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                           // if(FriendsShipStatus.contains("3"))
-                            {
-                                confirmFriendRequestAsyncTask=(ConfirmFriendRequestAsyncTask)new ConfirmFriendRequestAsyncTask(getApplicationContext(),parent_view).execute(UserId,ReceiverId);
-                            }
-                        }
-                    });
-                    FriendShipStatus.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //if(FriendsShipStatus.contains("2"))
-                            {
-                                sendFriendRequestAsyncTask=(SendFriendRequestAsyncTask) new SendFriendRequestAsyncTask(getApplicationContext(),inte,parent_view).execute(UserId,ReceiverId);
-                                //CancelFriendRequest.setVisibility(View.VISIBLE);
-                            }
-                        }
-                    });
-
-                        //friend = (FriendsViewModel) getIntent().getSerializableExtra(EXTRA_OBJCT);
-                        ///collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-            //        collapsingToolbarLayout.setTitle(friend.getName());
-                        ////////////////////////// for image ///////////////////////////////
-                  /* ((ImageView) findViewById(R.id.image)).setImageResource(friend.getPhoto());
-                    ((Button) findViewById(R.id.bt_view_photos)).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Snackbar.make(parent_view, "View Photos Clicked ", Snackbar.LENGTH_SHORT).show();
-                        }
-                    });
-
-                }
-                catch (Exception e)
-                 {
-                    e.printStackTrace();
-                 }
-*/
 
     }
 
@@ -254,15 +99,11 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
         final Button ConfirmRequest=(Button) findViewById(R.id.ConfirmFriendRequestButton);
         final Button Friends=(Button) findViewById(R.id.FriendButton);
         final Bundle bundle=getIntent().getExtras();
-       // ReceiverId=bundle.getString("ReceiverId");
-        // getLoaderManager().initLoader(1996, bundle, this).forceLoad();
-        // ReceiverId=bundle.getString("ReceiverId");
         final Intent inte=getIntent();
         dialogue=new ProgressDialog(ActivityFriendDetails.this);
         FriendsShipStatus=s;
         if(FriendsShipStatus.equals("1"))
         {
-            //FriendShipStatus.setText("Sending Request");
             FriendShipStatus.setVisibility(parent_view.GONE);
             ConfirmRequest.setVisibility(View.GONE);
             Friends.setVisibility(View.GONE);
@@ -274,17 +115,15 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
                     if(FriendsShipStatus.equals("1"))
                     {
                         cancelFriendRequestAsyncTask=(CancelFriendRequestAsyncTask) new CancelFriendRequestAsyncTask(getApplicationContext(),parent_view).execute(UserId,ReceiverId);
-                        //FriendShipStatus.setVisibility(View.VISIBLE);
-                        //connection.invoke("cancellFriendRequestAsync",conid,RecID);
+
                     }
                 }
             });
         }
         else if(FriendsShipStatus.equals("2"))
         {
-            //FriendShipStatus.setText("Send Friend Request");
+
             FriendShipStatus.setVisibility(View.VISIBLE);
-            //FriendShipStatus.setVisibility(parent_view.GONE);
             ConfirmRequest.setVisibility(View.GONE);
             Friends.setVisibility(View.GONE);
             CancelFriendRequest.setVisibility(View.GONE);
@@ -294,7 +133,7 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
                     if(FriendsShipStatus.equals("2"))
                     {
                         sendFriendRequestAsyncTask=(SendFriendRequestAsyncTask) new SendFriendRequestAsyncTask(getApplicationContext(),inte,parent_view).execute(UserId,ReceiverId);
-                        //CancelFriendRequest.setVisibility(View.VISIBLE);
+
                     }
                 }
             });
@@ -302,11 +141,10 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
         else if(FriendsShipStatus.equals("3"))
         {
             FriendShipStatus.setVisibility(View.GONE);
-            //FriendShipStatus.setVisibility(parent_view.GONE);
             ConfirmRequest.setVisibility(View.VISIBLE);
             Friends.setVisibility(View.GONE);
             CancelFriendRequest.setVisibility(View.GONE);
-            //FriendShipStatus.setText("Confirm Friend Request");
+
 
             ConfirmRequest.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -321,11 +159,9 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
         else if(FriendsShipStatus.equals("4"))
         {
             FriendShipStatus.setVisibility(View.GONE);
-            //FriendShipStatus.setVisibility(parent_view.GONE);
             ConfirmRequest.setVisibility(View.GONE);
             Friends.setVisibility(View.VISIBLE);
             CancelFriendRequest.setVisibility(View.GONE);
-            //FriendShipStatus.setText("FRIENDS");
         }
         else{
             Toast.makeText(getApplicationContext(),"Try Again Please Wait",Toast.LENGTH_LONG).show();
@@ -334,10 +170,9 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
         textView2.setText((bundle.getString("Name")));
         String Email = bundle.getString("Email");
         textView3.setText((bundle.getString("Email")));
-        // textView3.setVisibility(View.INVISIBLE);
         String Phone =  bundle.getString("Phone");
         textView1.setText(( bundle.getString("Phone")));
-        //textView1.setVisibility(View.INVISIBLE);
+
         try
         {
             LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(nMessageReceiver, new IntentFilter("CancelFriendRequestNotification"));
@@ -349,8 +184,6 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
 
             // animation transition
             this.context=context;
-            // ViewCompat.setTransitionName(findViewById(R.id.app_bar_layout), EXTRA_OBJCT);
-            //progressDialog=new ProgressDialog(this);
             setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle("");
@@ -358,18 +191,17 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
                 @Override
                 public void onClick(View v)
                 {
-                    // if(FriendsShipStatus.contains("1"))
+
                     {
                         cancelFriendRequestAsyncTask=(CancelFriendRequestAsyncTask) new CancelFriendRequestAsyncTask(getApplicationContext(),parent_view).execute(UserId,ReceiverId);
-                        //FriendShipStatus.setVisibility(View.VISIBLE);
-                        //connection.invoke("cancellFriendRequestAsync",conid,RecID);
+
                     }
                 }
             });
             ConfirmRequest.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // if(FriendsShipStatus.contains("3"))
+
                     {
                         confirmFriendRequestAsyncTask=(ConfirmFriendRequestAsyncTask)new ConfirmFriendRequestAsyncTask(getApplicationContext(),parent_view).execute(UserId,ReceiverId);
                     }
@@ -378,25 +210,14 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
             FriendShipStatus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //if(FriendsShipStatus.contains("2"))
+
                     {
                         sendFriendRequestAsyncTask=(SendFriendRequestAsyncTask) new SendFriendRequestAsyncTask(getApplicationContext(),inte,parent_view).execute(UserId,ReceiverId);
-                        //CancelFriendRequest.setVisibility(View.VISIBLE);
+
                     }
                 }
             });
 
-            //friend = (FriendsViewModel) getIntent().getSerializableExtra(EXTRA_OBJCT);
-            ///collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-            //        collapsingToolbarLayout.setTitle(friend.getName());
-            ////////////////////////// for image ///////////////////////////////
-                  /* ((ImageView) findViewById(R.id.image)).setImageResource(friend.getPhoto());
-                    ((Button) findViewById(R.id.bt_view_photos)).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Snackbar.make(parent_view, "View Photos Clicked ", Snackbar.LENGTH_SHORT).show();
-                        }
-                    });*/
 
         }
         catch (Exception e)
@@ -434,33 +255,25 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
                 if(Type==1)
                 {
                     FriendShipStatus.setVisibility(View.GONE);
-                    //FriendShipStatus.setVisibility(parent_view.GONE);
                     ConfirmRequest.setVisibility(View.VISIBLE);
                     Friends.setVisibility(View.GONE);
                     CancelFriendRequest.setVisibility(View.GONE);
-                    //FriendShipStatus=(Button) findViewById(R.id.FriendRequestButton);
-                    //FriendShipStatus.setText("Confirm Friend Request");
+
 
                 }
                 else if(Type==2)
                 {
                     FriendShipStatus.setVisibility(View.GONE);
-                    //FriendShipStatus.setVisibility(parent_view.GONE);
                     ConfirmRequest.setVisibility(View.GONE);
                     Friends.setVisibility(View.VISIBLE);
                     CancelFriendRequest.setVisibility(View.GONE);
-                    //FriendShipStatus=(Button) findViewById(R.id.FriendRequestButton);
-                    //FriendShipStatus.setText("Friends");
                 }
                 else if (Type==3)
                 {
                     FriendShipStatus.setVisibility(View.GONE);
-                    //FriendShipStatus.setVisibility(parent_view.GONE);
                     ConfirmRequest.setVisibility(View.GONE);
                     Friends.setVisibility(View.VISIBLE);
                     CancelFriendRequest.setVisibility(View.GONE);
-                    //FriendShipStatus=(Button) findViewById(R.id.FriendRequestButton);
-                   // FriendShipStatus.setText("Friends");
                 }
 
 
@@ -487,7 +300,6 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
                 if(TYpe.equals("1"))
                 {
                     FriendShipStatus.setVisibility(View.GONE);
-                    //FriendShipStatus.setVisibility(parent_view.GONE);
                     ConfirmRequest.setVisibility(View.VISIBLE);
                     Friends.setVisibility(View.GONE);
                     CancelFriendRequest.setVisibility(View.GONE);
@@ -554,12 +366,10 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
         {
             Intent i = new Intent(getApplicationContext(), ActivityChatDetails.class);
             String ID=temp.getPreferences(getApplicationContext(),"Userdata");
-            //temp.getPreferences(getApplicationContext(),"Userdata");
-            //i.putExtra("")
             i.putExtra("KEY_FID",ReceiverId);
             i.putExtra("UserId",ID);
             i.putExtra("KEY_FNAME",Name);
-            if(FriendsShipStatus.equals("4"))//||FriendsShipStatus.equals("3"))
+            if(FriendsShipStatus.equals("4"))
             {
                 startActivity(i);
             }
@@ -575,7 +385,6 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
     public boolean onCreateOptionsMenu(Menu menu)
     {
         getMenuInflater().inflate(R.menu.menu_friend_details, menu);
-        //MenuItem   menuItem=menu.findItem(R.id.action_send_message);
         return true;
     }
     private void registerNetworkBroadcast()
@@ -611,32 +420,8 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
             e.printStackTrace();
         }
     }
-    /*
 
-     */
 
-/*
-    @Override
-    public Loader<String> onCreateLoader(int id, Bundle args) {
-        //dialogue=new ProgressDialog(ActivityFriendDetails.this);
-        dialogue.setMessage("Loading");
-        dialogue.show();
-        return new checkFriendShipStatusAsyncTaskLoader(getApplicationContext() ,args);
-    }
-
-    @Override
-    public void onLoadFinished(Loader<String> loader, String data) {
-
-        FriendsShipStatus=data;
-        setFriendsShipStatus(data);
-       dialogue.dismiss();
-    }
-
-    @Override
-    public void onLoaderReset(Loader<String> loader) {
-
-    }
-    */
 
     public class CheckFriendShipStatusAsyncTask extends AsyncTask<String,String,String> {
         private Context context;

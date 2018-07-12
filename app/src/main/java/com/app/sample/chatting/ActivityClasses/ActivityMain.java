@@ -55,9 +55,7 @@ public class ActivityMain extends AppCompatActivity{
 
     static MenuItem Item;
     public static String TAG_FRAGMENT="Tag_Fragment";
-    public com.app.sample.chatting.AsyncTaskClasses.FriendChatMessageStatusAsyncTask messagestatus=new com.app.sample.chatting.AsyncTaskClasses.FriendChatMessageStatusAsyncTask();
     private ActionBarDrawerToggle mDrawerToggle;
-    public GroupChatMessageStatusAsyncTask groupChatMessageStatusAsyncTask=new GroupChatMessageStatusAsyncTask();
     private Toolbar toolbar;
     private AppBarLayout appBarLayout;
     private DrawerLayout drawerLayout;
@@ -67,27 +65,21 @@ public class ActivityMain extends AppCompatActivity{
     private BroadcastReceiver broadcastReceiver;
     private boolean isSearch = false;
     public static TabLayout tabLayout;
-    //Fragments
-    //TemporaryStorageSharedPreferences temp= new TemporaryStorageSharedPreferences();
     private FriendsFragment f_friends;
-    UserNotificationAsyncTask userNotificationAsyncTask=new UserNotificationAsyncTask();
     private ChatsFragment f_chats;
     private GroupsFragment f_groups;
     private View parent_view;
     private View view1;
     private View parent_view1;
-    private View view2;
     FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
     TemporaryStorageSharedPreferences temp=new TemporaryStorageSharedPreferences();
     public Context context;
-    TabItem tabfrnd;
-    TabItem tabchat;
-    TabItem tabgroup;
-    CheckConnection checkConnection=new CheckConnection();
     private Menu menu1;
     static String  NotificationCounter;
     int count;
     ClearNotificationAsyncTask clearNotificationAsyncTask=new ClearNotificationAsyncTask();
+
+   ////////////////////////////////Broadcast Receiver////////////////////////////////////////
     BroadcastReceiver mMessageReceiver = new BroadcastReceiver()
     {
         @Override
@@ -128,10 +120,7 @@ public class ActivityMain extends AppCompatActivity{
 
         }
     };
-
-
-
-
+    /////////////////////////////////////////Constructor///////////////////////////////////////////////////////
     public ActivityMain()
     {
 
@@ -164,8 +153,8 @@ public class ActivityMain extends AppCompatActivity{
             TextView textView1=(TextView)parent_view1.findViewById(R.id.Email);
             //ViewGroup.
             ////////////////////////////////////////////////////////////////////////////////////////////////////////list main kuch dalna ha////////////////////////////////////////////
-            if(messagestatus.frnd.size()==0)
-            {
+           // if(messagestatus.frnd.size()==0)
+         /*   {
                 messagestatus.friendChatViewModel.setContent("_+&*^(%)$%#");
                 messagestatus.friendChatViewModel.setDate("2020");
                 messagestatus.friendChatViewModel.setMessageId(Long.parseLong("101010101"));
@@ -178,7 +167,7 @@ public class ActivityMain extends AppCompatActivity{
                 groupChatMessageStatusAsyncTask.groupChatViewModel.setContent("_+&*^(%)$%#");
                 groupChatMessageStatusAsyncTask.group.add(groupChatMessageStatusAsyncTask.groupChatViewModel);
             }
-
+*/
 
             this.context=getApplicationContext();
             broadcastReceiver=new CheckConnection();
@@ -371,7 +360,7 @@ public class ActivityMain extends AppCompatActivity{
 
 
 
-    public void removeFragment(Fragment fragment)
+    public void removeFragment(Fragment fragment)throws Exception
     {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -757,7 +746,7 @@ public class ActivityMain extends AppCompatActivity{
 
     }
 
-    private Drawable buildCounterDrawable(int count, int backgroundImageId) {
+    private Drawable buildCounterDrawable(int count, int backgroundImageId)throws Exception {
         LayoutInflater inflater = LayoutInflater.from(this);
         View view = inflater.inflate(R.layout.counter_menuitem_layout, null);
         view.setBackgroundResource(backgroundImageId);
@@ -783,7 +772,7 @@ public class ActivityMain extends AppCompatActivity{
         return new BitmapDrawable(getResources(), bitmap);
     }
 
-    private void doIncrease() {
+    private void doIncrease()throws Exception {
         count++;
         invalidateOptionsMenu();
     }
