@@ -80,7 +80,11 @@ public class SendMessageToGroupEvent extends ActivityGroupDetails implements Hub
         String userId=temp1.getPreferences(context,"Userdata");
         if(! Activegroupmodal.equals(gmodal))
         {
+            try {
                 notificationGenerate.addNotificationforGroups(context,MessageInGroup,SenderName+"{"+groupName+"}",GroupID);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 /*
                 final String finalSenderName = SenderName;
             final String finalMessageInGroup = MessageInGroup;

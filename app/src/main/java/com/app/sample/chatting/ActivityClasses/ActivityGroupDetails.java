@@ -139,10 +139,9 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
 
     }
 
-    public void initToolbar()
+    public void initToolbar() throws Exception
     {
-        try
-        {
+
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
             actionBar = getSupportActionBar();
@@ -150,11 +149,7 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
             actionBar.setHomeButtonEnabled(true);
 //        actionBar.setTitle(group.getName());
 
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
 
     }
@@ -178,24 +173,18 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
         return super.dispatchTouchEvent(ev);
     }
 
-    public void bindView()
+    public void bindView() throws Exception
     {
-        try
-        {
+
             madapter.notifyDataSetChanged();
             listview.setSelectionFromTop(madapter.getCount()-1, 0);
 
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
     }
 
-    public void iniComponen()
+    public void iniComponen() throws Exception
     {
-        try
-        {
+
             final Random r = new Random();
             listview = (ListView) findViewById(R.id.listview);
             btn_send = (Button) findViewById(R.id.btn_send);
@@ -225,8 +214,17 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
 */
                     et_content.setText("");
                     flag[0]=true;
-                    bindView();
-                    hideKeyboard();}
+                    try {
+                        bindView();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        hideKeyboard();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
 
             });
             et_content.addTextChangedListener(contentWatcher);
@@ -236,11 +234,7 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
                 btn_send.setEnabled(false);
             }
             hideKeyboard();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
 
@@ -260,26 +254,26 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
             groupChatViewModel.setContent(Text);
             groupChatViewModel.setId(Long.parseLong(GroupId));
             groupChatViewModel.setSenderId(Long.parseLong(SenderID));
-            madapter.add(groupChatViewModel);
+            try {
+                madapter.add(groupChatViewModel);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             madapter.notifyDataSetChanged();
         }
     };
 
     private void hideKeyboard()
+            throws Exception
     {
-        try
-        {
+
             View view = this.getCurrentFocus();
             if (view != null)
             {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
 
@@ -389,10 +383,9 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
     }
 
 
-    private void registerNetworkBroadcast()
+    private void registerNetworkBroadcast() throws Exception
     {
-        try
-        {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
             {
                 registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
@@ -401,23 +394,13 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
             {
                 registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
-    protected void unregisterNetworkChanges()
+    protected void unregisterNetworkChanges() throws Exception
     {
-        try
-        {
-            unregisterReceiver(broadcastReceiver);
-        }
-        catch (IllegalArgumentException e)
-        {
-            e.printStackTrace();
-        }
+          unregisterReceiver(broadcastReceiver);
+
     }
 
 
@@ -425,8 +408,16 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
     public void onDestroy()
     {
         super.onDestroy();
-        unregisterNetworkChanges();
+        try {
+            unregisterNetworkChanges();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         String ActiveModal=null;
-        temp.savePreferences(context,"ActiveModalGroup",ActiveModal);
+        try {
+            temp.savePreferences(context,"ActiveModalGroup",ActiveModal);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

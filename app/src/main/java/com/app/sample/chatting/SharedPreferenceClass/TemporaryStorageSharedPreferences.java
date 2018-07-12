@@ -17,7 +17,7 @@ public class TemporaryStorageSharedPreferences{
         int temp = 0;
 
 
-        public static void savePreferences(Context mContext, String key, String value)
+        public static void savePreferences(Context mContext, String key, String value)throws Exception
         {
                 try{
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
@@ -30,7 +30,7 @@ public class TemporaryStorageSharedPreferences{
                     }
 
         }
-        public static void setPreferencesforJsonElement(Context mContext, String key, JsonElement object)
+        public static void setPreferencesforJsonElement(Context mContext, String key, JsonElement object)throws Exception
         {
             try{
                 String value=object.toString();
@@ -97,7 +97,7 @@ public class TemporaryStorageSharedPreferences{
         /**
          * @param mContext
          */
-        public static void removeAllSharedPreferences(Context mContext) {
+        public static void removeAllSharedPreferences(Context mContext) throws Exception{
             try{
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(mContext);
                 SharedPreferences.Editor editor = sharedPreferences.edit();

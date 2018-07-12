@@ -65,7 +65,11 @@ public class ActivityRegister extends AppCompatActivity {
                         final int checkconnectionflag=checkConnection.connnectioncheck(context);
                         if(checkconnectionflag==1)
                         {
-                            hideKeyboard();
+                            try {
+                                hideKeyboard();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             registerAyscTask = (RegisterAsyncTask) new RegisterAsyncTask(name,phoneNo,email,password,getApplicationContext(),ActivityRegister.this).execute("","","");
                         }
                         else {
@@ -97,7 +101,7 @@ public class ActivityRegister extends AppCompatActivity {
 
     }
 
-    private void hideKeyboard()
+    private void hideKeyboard()throws Exception
     {
         try
         {
@@ -114,7 +118,7 @@ public class ActivityRegister extends AppCompatActivity {
         }
 
     }
-    private void registerNetworkBroadcast()
+    private void registerNetworkBroadcast()throws Exception
     {
         try
         {

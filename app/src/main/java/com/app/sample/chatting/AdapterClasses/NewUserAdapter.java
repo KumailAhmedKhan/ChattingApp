@@ -79,7 +79,7 @@ public class NewUserAdapter extends BaseAdapter {
         }
         return convertView;
     }
-    public void setUser(List<FriendsViewModel> data)
+    public void setUser(List<FriendsViewModel> data)throws Exception
     {
         try{
             msg.addAll(data);

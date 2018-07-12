@@ -97,7 +97,11 @@ public class SendMessageToFriendEvent extends ActivityChatDetails implements Hub
 
         if(!(ActiveModal.equals(ActiveModel1)) && !UserID.equals(SenderID))
         {
-            notificationGenerate.addNotificationforFriends(context,MessageforReceiver,SenderName,SenderID,UserID);
+            try {
+                notificationGenerate.addNotificationforFriends(context,MessageforReceiver,SenderName,SenderID,UserID);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             /*
             final String finalMessageforReceiver = MessageforReceiver;
             final String finalReceiverUserID = ReceiverUserID;

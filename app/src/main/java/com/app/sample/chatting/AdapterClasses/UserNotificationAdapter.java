@@ -80,7 +80,7 @@ public class UserNotificationAdapter extends BaseAdapter {
         }
         return convertView;
     }
-    public void setUserserNotification(List<UserNotificationViewModel> data)
+    public void setUserserNotification(List<UserNotificationViewModel> data)throws Exception
     {
         try{
             msg.addAll(data);

@@ -29,9 +29,11 @@ public class ConnectEvent implements HubEventListener {
 
         //temporaryStorageSharedPreferences.setPreferencesforJsonElement(context,"UserModel",userModel);
 
-        temporaryStorageSharedPreferences.savePreferences(context,"ConnectionID",connectionId);
-
-
+        try {
+            temporaryStorageSharedPreferences.savePreferences(context,"ConnectionID",connectionId);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

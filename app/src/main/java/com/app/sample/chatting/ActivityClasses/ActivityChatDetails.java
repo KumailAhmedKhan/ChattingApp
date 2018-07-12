@@ -78,18 +78,6 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
     CheckConnection checkConnection=new CheckConnection();
 
 
-    // give preparation animation activity transition
-    public static void navigate(AppCompatActivity activity, View transitionImage,  String snippet,String Name,String Id)
-    {
-        Intent intent = new Intent(activity, ActivityChatDetails.class);
-        //intent.putExtra(KEY_FRIEND, obj);
-        intent.putExtra(KEY_SNIPPET, snippet);
-        intent.putExtra(KEY_FID,Id);
-        intent.putExtra(KEY_FNAME,Name);
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, transitionImage, KEY_FRIEND);
-        ActivityCompat.startActivity(activity, intent, options.toBundle());
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -174,9 +162,9 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
     }
 
     public void initToolbar(String temp1)
+            throws Exception
     {
-        try
-        {
+
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             toolbar.setOnClickListener(new OnClickListener()
             {
@@ -212,27 +200,18 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
                     actionBar.setSubtitle("offline");
                 }
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
     }
 
-    public void bindView()
+    public void bindView() throws Exception
     {
-        try
-        {
+
             madapter.notifyDataSetChanged();
             listview.setSelectionFromTop(madapter.getCount(), 0);
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
     }
 
-    public void iniComponen()
+    public void iniComponen() throws Exception
     {
         try
         {
@@ -264,8 +243,16 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
                     connection.invoke("sendMessageAsync",conid,frndId,editTextValue);
                     et_content.setText("");
                     flag[0]=true;
-                    bindView();
-                    hideKeyboard();
+                    try {
+                        bindView();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        hideKeyboard();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
 
                 }
             });
@@ -300,7 +287,11 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
             friendChatViewModel.setRecId(Long.parseLong(ReceiverID));
             friendChatViewModel.setSendId(Long.parseLong(SenderId));
             friendChatViewModel.setDate(Date);
-            madapter.add(friendChatViewModel);
+            try {
+                madapter.add(friendChatViewModel);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             madapter.notifyDataSetChanged();
         }
     };
@@ -311,14 +302,17 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
         {
            //initToolbar();
             String OnlineFriendsId=intent.getStringExtra("OfflineFriendsId");
-            initToolbar(OnlineFriendsId);
+            try {
+                initToolbar(OnlineFriendsId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     };
 
-    private void hideKeyboard()
+    private void hideKeyboard() throws Exception
     {
-        try
-        {
+
             View view = this.getCurrentFocus();
                 if (view != null)
                 {
@@ -326,10 +320,7 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
 
-         }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
 
@@ -450,10 +441,9 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
     }
 
 
-    private void registerNetworkBroadcast()
+    private void registerNetworkBroadcast() throws  Exception
     {
-        try
-        {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
             {
             registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
@@ -462,23 +452,13 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
             {
                 registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
     }
-    protected void unregisterNetworkChanges()
+    protected void unregisterNetworkChanges() throws  Exception
     {
-        try
-        {
+
             unregisterReceiver(broadcastReceiver);
-        }
-        catch (IllegalArgumentException e)
-        {
-            e.printStackTrace();
-        }
+
     }
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev)
@@ -505,9 +485,17 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
     public void onDestroy()
     {
         super.onDestroy();
-        unregisterNetworkChanges();
+        try {
+            unregisterNetworkChanges();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         String ActiveModal="I_"+null;
-        temp.savePreferences(getApplicationContext(),"ActiveModal",ActiveModal);
+        try {
+            temp.savePreferences(getApplicationContext(),"ActiveModal",ActiveModal);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         message.clear();
 
     }

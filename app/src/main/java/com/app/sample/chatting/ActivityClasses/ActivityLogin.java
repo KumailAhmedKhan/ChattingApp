@@ -79,7 +79,11 @@ public class ActivityLogin extends AppCompatActivity {
                             final int checkconnectionflag=checkConnection.connnectioncheck(context);
                             if(checkconnectionflag==1)
                             {
-                                hideKeyboard();
+                                try {
+                                    hideKeyboard();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                                 loginAyscTask = (LoginAsyncTask) new LoginAsyncTask(phoneNo,password,getApplicationContext(),ActivityLogin.this).execute("","","");
                             }
                             else {
@@ -112,27 +116,21 @@ public class ActivityLogin extends AppCompatActivity {
         }
 
     }
-    private void hideKeyboard()
+    private void hideKeyboard() throws Exception
     {
-        try
-        {
+
             View view = this.getCurrentFocus();
             if (view != null)
             {
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
-    private void registerNetworkBroadcast()
+    private void registerNetworkBroadcast() throws Exception
     {
-        try
-        {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
             {
                 registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
@@ -141,30 +139,25 @@ public class ActivityLogin extends AppCompatActivity {
             {
                 registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
-    protected void unregisterNetworkChanges()
+    protected void unregisterNetworkChanges() throws Exception
     {
-        try
-        {
+
             unregisterReceiver(broadcastReceiver);
-        }
-        catch (IllegalArgumentException e)
-        {
-            e.printStackTrace();
-        }
+
     }
 
     @Override
     public void onDestroy()
     {
         super.onDestroy();
-        unregisterNetworkChanges();
+        try {
+            unregisterNetworkChanges();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

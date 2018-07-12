@@ -66,7 +66,7 @@ public class ActivitySelectFriend extends AppCompatActivity {
 
 	}
 
-    private void initComponent()
+    private void initComponent()throws Exception
     {
 	    try
         {
@@ -85,7 +85,7 @@ public class ActivitySelectFriend extends AppCompatActivity {
 
     }
 
-    public void initToolbar()
+    public void initToolbar()throws Exception
     {
 	    try
         {
@@ -146,7 +146,7 @@ public class ActivitySelectFriend extends AppCompatActivity {
         }
         return false;
     }
-    private void registerNetworkBroadcast()
+    private void registerNetworkBroadcast()throws Exception
     {
 	    try
         {

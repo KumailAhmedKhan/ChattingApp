@@ -243,6 +243,7 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
     }
 
     public void initialComponent(String s)
+            throws Exception
     {
         UserId= (temp.getPreferences(getApplicationContext(),"Userdata"));
         final  TextView textView1=(TextView) findViewById(R.id.Phone) ;
@@ -409,14 +410,9 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent)
     {
-        try
-        {
+
             return super.dispatchTouchEvent(motionEvent);
-        }
-        catch (NullPointerException e)
-        {
-            return false;
-        }
+
     }
 
     BroadcastReceiver mMessageReceiver = new BroadcastReceiver()
@@ -583,9 +579,9 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
         return true;
     }
     private void registerNetworkBroadcast()
+            throws Exception
     {
-        try
-        {
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
             {
                 registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
@@ -594,31 +590,26 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
             {
                 registerReceiver(broadcastReceiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
     protected void unregisterNetworkChanges()
+            throws Exception
     {
-        try
-        {
-            unregisterReceiver(broadcastReceiver);
-        }
-        catch (IllegalArgumentException e)
-        {
-            e.printStackTrace();
 
-        }
+            unregisterReceiver(broadcastReceiver);
+
     }
 
     @Override
     public void onDestroy()
     {
         super.onDestroy();
-        unregisterNetworkChanges();
+        try {
+            unregisterNetworkChanges();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     /*
 
@@ -740,7 +731,11 @@ public class ActivityFriendDetails extends AppCompatActivity //implements Loader
             }
            // intent.putExtra("FriendshipStatus",s);
             //setFriendsShipStatus(s);
-            initialComponent(s);
+            try {
+                initialComponent(s);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             //context.startActivity(intent);
             //Intent newIntent= new Intent(context, ActivitySplash.class);
             //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

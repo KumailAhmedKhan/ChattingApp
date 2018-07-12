@@ -79,7 +79,11 @@ public class NewUserActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(android.content.Loader<List<FriendsViewModel>> loader, List<FriendsViewModel> data) {
-        mAdapter.setUser(data);
+        try {
+            mAdapter.setUser(data);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

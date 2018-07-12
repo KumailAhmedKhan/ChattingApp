@@ -78,8 +78,12 @@ public class ActivitySplash extends AppCompatActivity
             //registerNetworkBroadcast();
 
             final int checkconnectionflag=checkConnection.connnectioncheck(getApplicationContext());
+        try {
             bindLogo();
-            tempo = temp.getPreferences(getApplicationContext(), "Logindata");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        tempo = temp.getPreferences(getApplicationContext(), "Logindata");
             if(tempo.equals("99")|| tempo.isEmpty())
             {
 
@@ -191,7 +195,7 @@ public class ActivitySplash extends AppCompatActivity
         }
         return true;
     }*/
-    private void bindLogo()
+    private void bindLogo()throws Exception
     {
          // Start animating the image
             final ImageView splash = (ImageView) findViewById(R.id.splash);
@@ -233,7 +237,7 @@ public class ActivitySplash extends AppCompatActivity
 
 
     }
-    private void registerNetworkBroadcast()
+    private void registerNetworkBroadcast()throws Exception
     {
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
@@ -247,7 +251,7 @@ public class ActivitySplash extends AppCompatActivity
 
 
     }
-    protected void unregisterNetworkChanges()
+    protected void unregisterNetworkChanges()throws Exception
     {
         try
         {
@@ -265,7 +269,11 @@ public class ActivitySplash extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        unregisterNetworkChanges();
+        try {
+            unregisterNetworkChanges();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         super.onDestroy();
     }
 

@@ -83,7 +83,7 @@ public class FriendsChatAdapter extends BaseAdapter {
         return mMessages.get(position).getId();
     }
 
-    public void setfriendchat(List<FriendChatViewModel> data){
+    public void setfriendchat(List<FriendChatViewModel> data)throws Exception{
         try{
             mMessages.clear();;
             mMessages.addAll(data);
@@ -248,7 +248,7 @@ public class FriendsChatAdapter extends BaseAdapter {
      * remove data item from messageAdapter
      *
      **/
-    public void remove(int position){
+    public void remove(int position)throws Exception{
         try{
             mMessages.remove(position);
         }catch(Exception e){
@@ -261,10 +261,10 @@ public class FriendsChatAdapter extends BaseAdapter {
      * add data item to messageAdapter
      *
      **/
-    public void adaptercleaR(){
+    public void adaptercleaR()throws Exception{
         mMessages.clear();;
     }
-    public void add(FriendChatViewModel msg){
+    public void add(FriendChatViewModel msg)throws Exception{
         try{
             //mMessages.clear();
             mMessages.add(msg);

@@ -126,7 +126,7 @@ public class GroupsFragment extends Fragment implements LoaderManager.LoaderCall
 
     }
 
-    public void onRefreshLoading()
+    public void onRefreshLoading()throws Exception
     {
         try
         {

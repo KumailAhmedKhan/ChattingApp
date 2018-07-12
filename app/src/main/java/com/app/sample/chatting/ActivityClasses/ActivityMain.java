@@ -290,7 +290,7 @@ public class ActivityMain extends AppCompatActivity{
 
 
 
-    private void initAction()
+    private void initAction()throws Exception
     {
         fab.setOnClickListener(new View.OnClickListener()
         {
@@ -323,7 +323,11 @@ public class ActivityMain extends AppCompatActivity{
             @Override
             public void onTabSelected(TabLayout.Tab tab)
             {
-                closeSearch();
+                try {
+                    closeSearch();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 viewPager.setCurrentItem(tab.getPosition());
                 switch (tab.getPosition())
                 {
@@ -376,10 +380,9 @@ public class ActivityMain extends AppCompatActivity{
         fragmentTransaction.commit();
     }
 
-    private void setupViewPager(ViewPager viewPager)
+    private void setupViewPager(ViewPager viewPager)throws Exception
     {
-        try
-        {
+
             if (f_friends == null)
             {
                 f_friends = new FriendsFragment();
@@ -404,18 +407,13 @@ public class ActivityMain extends AppCompatActivity{
             adapter.addFragment(f_groups, getString(R.string.tab_groups));
 
             viewPager.setAdapter(adapter);
-        }
-        catch(Exception e )
-        {
-            e.printStackTrace();
-        }
+
 
     }
 
-    private void prepareActionBar(Toolbar toolbar)
+    private void prepareActionBar(Toolbar toolbar) throws Exception
     {
-        try
-        {
+
             setSupportActionBar(toolbar);
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -424,18 +422,13 @@ public class ActivityMain extends AppCompatActivity{
             {
                 settingDrawer();
             }
-        }
-        catch(Exception e)
-        {
-                e.printStackTrace();
-        }
+
 
     }
 
-    public void setVisibilityAppBar(boolean visible)
+    public void setVisibilityAppBar(boolean visible) throws Exception
     {
-        try
-        {
+
             CoordinatorLayout.LayoutParams layout_visible = new CoordinatorLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             CoordinatorLayout.LayoutParams layout_invisible = new CoordinatorLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0);
             if(visible)
@@ -447,18 +440,13 @@ public class ActivityMain extends AppCompatActivity{
                 appBarLayout.setLayoutParams(layout_invisible);
                 fab.hide();
             }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
 
-    private void settingDrawer()
+    private void settingDrawer() throws Exception
     {
-        try
-        {
+
             mDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close)
             {
             /** Called when a drawer has settled in a completely closed state. */
@@ -474,18 +462,13 @@ public class ActivityMain extends AppCompatActivity{
             }};
             // Set the drawer toggle as the DrawerListener
             drawerLayout.setDrawerListener(mDrawerToggle);
-        }
-        catch(Exception e)
-        {
-                e.printStackTrace();
-        }
+
 
     }
 
-    private void setupDrawerLayout()
+    private void setupDrawerLayout() throws Exception
     {
-        try
-        {
+
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
             final NavigationView view = (NavigationView) findViewById(R.id.nav_view);
             view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener()
@@ -522,9 +505,21 @@ public class ActivityMain extends AppCompatActivity{
                             break;
                         case("Logout"):
 
-                            temp.savePreferences(context,"Userdata", String.valueOf(0));
-                            temp.savePreferences(context,"Logindata",String.valueOf(99));
-                            temp.savePreferences(context,"Logindata",String.valueOf(99));
+                            try {
+                                temp.savePreferences(context,"Userdata", String.valueOf(0));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                temp.savePreferences(context,"Logindata",String.valueOf(99));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            try {
+                                temp.savePreferences(context,"Logindata",String.valueOf(99));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                             Intent intent = new Intent("ServiceStopped");
                             LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
                             startActivity(new Intent(ActivityMain.this,ActivityLogin.class));
@@ -535,11 +530,7 @@ public class ActivityMain extends AppCompatActivity{
                     return true;
                 }
             });
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
 
@@ -649,7 +640,11 @@ public class ActivityMain extends AppCompatActivity{
 
                 public boolean onClose()
                 {
-                    closeSearch();
+                    try {
+                        closeSearch();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     return true;
                 }
             });
@@ -669,12 +664,20 @@ public class ActivityMain extends AppCompatActivity{
                 {
                 isSearch = true;
                 searchToolbar.setVisibility(View.VISIBLE);
-                prepareActionBar(searchToolbar);
-                supportInvalidateOptionsMenu();
+                    try {
+                        prepareActionBar(searchToolbar);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    supportInvalidateOptionsMenu();
                 return true;
             }
             case android.R.id.home:
-                closeSearch();
+                try {
+                    closeSearch();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 return true;
             case R.id.action_notif:
                 {
@@ -694,11 +697,9 @@ public class ActivityMain extends AppCompatActivity{
         }
     }
 
-    private void closeSearch()
+    private void closeSearch() throws Exception
     {
-        try
-        {
-            if (isSearch)
+         if (isSearch)
             {
             isSearch = false;
             if (viewPager.getCurrentItem() == 0)
@@ -712,21 +713,16 @@ public class ActivityMain extends AppCompatActivity{
             searchToolbar.setVisibility(View.GONE);
             supportInvalidateOptionsMenu();
             }
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
+
 
     }
 
 
     private long exitTime = 0;
 
-    public void doExitApp()
+    public void doExitApp() throws Exception
     {
-            try
-            {
+
                 if ((System.currentTimeMillis() - exitTime) > 2000)
                 {
                     Toast.makeText(this, R.string.press_again_exit_app, Toast.LENGTH_SHORT).show();
@@ -735,11 +731,7 @@ public class ActivityMain extends AppCompatActivity{
                 else {
                     //finish();
                 }
-            }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-            }
+
 
     }
 
@@ -803,9 +795,17 @@ public class ActivityMain extends AppCompatActivity{
         super.onDestroy();
         String abc=null;
         String ActiveModal=null;
-        temp.savePreferences(context.getApplicationContext(),"ActiveModal",ActiveModal);
-        temp.savePreferences(context.getApplicationContext(),"OnlineFriendIds",abc);
-       // unregisterNetworkChanges();
+        try {
+            temp.savePreferences(context.getApplicationContext(),"ActiveModal",ActiveModal);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            temp.savePreferences(context.getApplicationContext(),"OnlineFriendIds",abc);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        // unregisterNetworkChanges();
     }
 
 }

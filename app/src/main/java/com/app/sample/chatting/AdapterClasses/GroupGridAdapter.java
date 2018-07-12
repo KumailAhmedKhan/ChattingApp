@@ -65,7 +65,8 @@ public class GroupGridAdapter extends RecyclerView.Adapter<GroupGridAdapter.View
         void onItemClick(View view, UserGroupViewModel obj, int position);
     }
 
-    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener)
+    throws Exception{
         try{
             this.mOnItemClickListener = mItemClickListener;
         }
@@ -79,7 +80,7 @@ public class GroupGridAdapter extends RecyclerView.Adapter<GroupGridAdapter.View
     {
         userGroupViewModelList.remove(data);
     }*/
-    public void setGroup(List<UserGroupViewModel> data){
+    public void setGroup(List<UserGroupViewModel> data)throws Exception{
         /*int a=lastPosition;
         for(int i=0;i<=lastPosition;i++){
            if (data.get(i).getId()==data.get(a+i).getId()){

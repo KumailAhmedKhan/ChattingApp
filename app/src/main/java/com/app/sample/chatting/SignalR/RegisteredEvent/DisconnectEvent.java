@@ -60,7 +60,11 @@ public class DisconnectEvent implements HubEventListener {
         }
         String onlineUsersString=Onlineusers.toString();
         onlineUsersString=onlineUsersString.replaceAll(" ","");
-        temporary.savePreferences(context,"OnlineFriendIds",onlineUsersString);
+        try {
+            temporary.savePreferences(context,"OnlineFriendIds",onlineUsersString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         Intent intent = new Intent("OfflineFriend");
         intent.putExtra("OfflineFriendsId",onlineUsersString);
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);

@@ -176,7 +176,7 @@ public class FriendRecentChatAdapter extends RecyclerView.Adapter<FriendRecentCh
      * Here is the key method to apply the animation
      */
     private int lastPosition = -1;
-    private void setAnimation(View viewToAnimate, int position) {
+    private void setAnimation(View viewToAnimate, int position)throws Exception {
         try{ // If the bound view wasn't previously displayed on screen, it's animated
             if (position > lastPosition)
             {
@@ -201,7 +201,7 @@ public class FriendRecentChatAdapter extends RecyclerView.Adapter<FriendRecentCh
         return msg.get(position).getSenderId();
     }
 
-   public void  setfchat(List<FriendsRecentChatViewModel> data){
+   public void  setfchat(List<FriendsRecentChatViewModel> data)throws Exception{
         try{
             msg.clear();
             msg.addAll(data);
@@ -216,7 +216,7 @@ public class FriendRecentChatAdapter extends RecyclerView.Adapter<FriendRecentCh
     /**
      * For multiple selection
      */
-    public void toggleSelection(int pos) {
+    public void toggleSelection(int pos)throws Exception {
         try{
             if (selectedItems.get(pos, false))
             {
@@ -233,7 +233,7 @@ public class FriendRecentChatAdapter extends RecyclerView.Adapter<FriendRecentCh
 
     }
 
-    public void clearSelections() {
+    public void clearSelections()throws Exception {
         try{
             selectedItems.clear();
             notifyDataSetChanged();
@@ -254,7 +254,7 @@ public class FriendRecentChatAdapter extends RecyclerView.Adapter<FriendRecentCh
     public Filter getFilter() {
         return mFilter;
     }
-    public void removeSelectedItem(){
+    public void removeSelectedItem()throws Exception{
         try{
             List<FriendsRecentChatViewModel> items = getSelectedItems();
             msg.removeAll(items);

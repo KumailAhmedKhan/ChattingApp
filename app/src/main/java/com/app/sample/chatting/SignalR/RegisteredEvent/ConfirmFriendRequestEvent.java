@@ -107,8 +107,16 @@ public class ConfirmFriendRequestEvent implements HubEventListener
         }
             if(notification.getNotificationType()==1)
             {
-                notificationGenerate.NotificationForFriendRequest(context,notification.getText(),notification.getSenderName(),notification.getSenderId());
-                notificationGenerate.NotificationForFriendRequesrConfirmed(context,notification.getText(),notification.getSenderName(),notification.getSenderId());
+                try {
+                    notificationGenerate.NotificationForFriendRequest(context,notification.getText(),notification.getSenderName(),notification.getSenderId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                try {
+                    notificationGenerate.NotificationForFriendRequesrConfirmed(context,notification.getText(),notification.getSenderName(),notification.getSenderId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent("FriendNow");
                 String Id= String.valueOf(notification.getSenderId());
                 String Type= String.valueOf(notification.getNotificationType());
@@ -126,7 +134,11 @@ public class ConfirmFriendRequestEvent implements HubEventListener
             }
             else if(notification.getNotificationType()==2)
             {
-                notificationGenerate.NotificationForFriendRequesrConfirmed(context,notification.getText(),notification.getSenderName(),notification.getSenderId());
+                try {
+                    notificationGenerate.NotificationForFriendRequesrConfirmed(context,notification.getText(),notification.getSenderName(),notification.getSenderId());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent("FriendNow");
                 String Id= String.valueOf(notification.getSenderId());
                 String Type= String.valueOf(notification.getNotificationType());
@@ -148,7 +160,11 @@ public class ConfirmFriendRequestEvent implements HubEventListener
             }
             else if(notification.getNotificationType()==3)
             {
-                notificationGenerate.NotificationForFriendNow(context,notification.getText(),notification.getSenderName());
+                try {
+                    notificationGenerate.NotificationForFriendNow(context,notification.getText(),notification.getSenderName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 Intent intent = new Intent("FriendNow");
                 String Id= String.valueOf(notification.getSenderId());
                 String Type= String.valueOf(notification.getNotificationType());
@@ -179,7 +195,11 @@ public class ConfirmFriendRequestEvent implements HubEventListener
                 intent1.putExtra("NotificationType",Type1);
                 LocalBroadcastManager.getInstance(context).sendBroadcast(intent1);
 
-                notificationGenerate.NotificationForAddedToGroup(context,notification.getText(),notification.getSenderName());
+                try {
+                    notificationGenerate.NotificationForAddedToGroup(context,notification.getText(),notification.getSenderName());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             else
                 {

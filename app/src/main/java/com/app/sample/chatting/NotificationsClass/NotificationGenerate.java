@@ -20,7 +20,7 @@ public class NotificationGenerate {
     public NotificationGenerate(){
 
     }
-    public void addNotificationforFriends(Context ctx,String Message,String Name,String FrndId,String UserID)
+    public void addNotificationforFriends(Context ctx,String Message,String Name,String FrndId,String UserID)throws Exception
     {
         try{
             long[] pattern = {500,500,500,500,500,500,500,500,500};
@@ -49,7 +49,7 @@ public class NotificationGenerate {
         }
 
     }
-    public void NotificationForFriendRequest(Context ctx,String Message,String Name,Long ID)
+    public void NotificationForFriendRequest(Context ctx,String Message,String Name,Long ID)throws Exception
     {
         try{
             long[] pattern = {500,500,500,500,500,500,500,500,500};
@@ -79,7 +79,7 @@ public class NotificationGenerate {
         }
 
     }
-    public void NotificationForFriendRequesrConfirmed(Context ctx,String Message,String Name,Long ID)
+    public void NotificationForFriendRequesrConfirmed(Context ctx,String Message,String Name,Long ID)throws Exception
     {
         try{
             long[] pattern = {500,500,500,500,500,500,500,500,500};
@@ -107,7 +107,7 @@ public class NotificationGenerate {
         }
 
     }
-    public void NotificationForFriendNow(Context ctx,String Message,String Name)
+    public void NotificationForFriendNow(Context ctx,String Message,String Name)throws Exception
     {
         try{
             long[] pattern = {500,500,500,500,500,500,500,500,500};
@@ -136,7 +136,7 @@ public class NotificationGenerate {
         }
 
     }
-    public void NotificationForAddedToGroup(Context ctx,String Message,String Name)
+    public void NotificationForAddedToGroup(Context ctx,String Message,String Name)throws Exception
     {
         try{
             long[] pattern = {500,500,500,500,500,500,500,500,500};
@@ -165,7 +165,7 @@ public class NotificationGenerate {
         }
 
     }
-    public void addNotificationforGroups(Context ctx,String Message,String Name,String GroupID)
+    public void addNotificationforGroups(Context ctx,String Message,String Name,String GroupID)throws Exception
     {
         try{
             long[] pattern = {500,500,500,500,500,500,500,500,500};

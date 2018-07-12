@@ -23,6 +23,10 @@ public class GetOnlineUserEvent implements HubEventListener {
         String string = temp[0].toString();
         String temp1=temp[0].toString();
         // String[] Array = temp1.split(",");
-        temporary.savePreferences(context.getApplicationContext(),"OnlineFriendIds",temp1);
+        try {
+            temporary.savePreferences(context.getApplicationContext(),"OnlineFriendIds",temp1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -51,7 +51,7 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
 
         ctx = context;
     }
-    public void setFriends(List<FriendsViewModel> data)
+    public void setFriends(List<FriendsViewModel> data)throws Exception
     {   try{
         original_items.clear();
         original_items.addAll(data);
@@ -60,7 +60,8 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
     {
         e.printStackTrace();
     }}
-    public void AddFriend (FriendsViewModel obj){
+    public void AddFriend (FriendsViewModel obj)throws Exception
+    {
         original_items.add(obj);
         notifyDataSetChanged();
     }
@@ -132,7 +133,8 @@ public class FriendsListAdapter extends RecyclerView.Adapter<FriendsListAdapter.
      */
     private int lastPosition = -1;
 
-    private void setAnimation(View viewToAnimate, int position) {
+    private void setAnimation(View viewToAnimate, int position) throws Exception
+    {
         try{
             // If the bound view wasn't previously displayed on screen, it's animated
             if (position > lastPosition) {

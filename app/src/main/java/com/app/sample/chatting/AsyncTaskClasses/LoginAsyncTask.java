@@ -175,9 +175,21 @@ JsonElement element = gson.fromJson(myData.toString(), JsonElement.class);*/
                 Id = jsonModel.getInt("Id");
                 Gson gson = new Gson();
                 JsonElement json=gson.fromJson(jsonModel.toString(),JsonElement.class);
-                temp.savePreferences(context,"Userdata",String.valueOf(Id));
-                temp.savePreferences(context,"Logindata", String.valueOf(100));
-                temp.setPreferencesforJsonElement(context,"UserModel",json);
+                try {
+                        temp.savePreferences(context,"Userdata",String.valueOf(Id));
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+                try {
+                        temp.savePreferences(context,"Logindata", String.valueOf(100));
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
+                try {
+                        temp.setPreferencesforJsonElement(context,"UserModel",json);
+                } catch (Exception e) {
+                        e.printStackTrace();
+                }
                 Toast.makeText(context, "Login Successfully", Toast.LENGTH_LONG).show();
         //context.startActivity(new Intent(context,ActivitySplash.class));
                 Intent newIntent= new Intent(context, ActivitySplash.class);

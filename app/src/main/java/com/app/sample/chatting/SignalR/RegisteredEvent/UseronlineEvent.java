@@ -95,7 +95,11 @@ public class UseronlineEvent implements HubEventListener {
         Intent intent = new Intent("OfflineFriend");
         intent.putExtra("OfflineFriendsId",onlineUsersString);
         LocalBroadcastManager.getInstance(context.getApplicationContext()).sendBroadcast(intent);
-        temporary.savePreferences(context.getApplicationContext(),"OnlineFriendIds",onlineUsersString);
+        try {
+            temporary.savePreferences(context.getApplicationContext(),"OnlineFriendIds",onlineUsersString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }

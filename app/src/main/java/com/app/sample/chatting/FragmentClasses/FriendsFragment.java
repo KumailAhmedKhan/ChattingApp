@@ -63,7 +63,11 @@ public class FriendsFragment extends Fragment implements LoaderManager.LoaderCal
             else{
                 friendsViewModel.setName(name);
                 friendsViewModel.setId(ID);
-                mAdapter.AddFriend(friendsViewModel);
+                try {
+                    mAdapter.AddFriend(friendsViewModel);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 mAdapter.notifyDataSetChanged();
             }
 

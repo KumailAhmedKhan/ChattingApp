@@ -69,7 +69,7 @@ public class GroupChatAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return message.get(position).getId();
     }
-    public void setchat(List<GroupChatViewModel> data){
+    public void setchat(List<GroupChatViewModel> data)throws Exception{
         try{
             message.clear();
             message.addAll(data);
@@ -85,7 +85,8 @@ public class GroupChatAdapter extends BaseAdapter {
      * remove data item from messageAdapter
      *
      **/
-    public void remove(int position){
+    public void remove(int position)throws Exception
+    {
 
         try{
             message.remove(position);
@@ -100,7 +101,8 @@ public class GroupChatAdapter extends BaseAdapter {
      * add data item to messageAdapter
      *
      **/
-    public void add(GroupChatViewModel msg){
+    public void add(GroupChatViewModel msg)
+    throws Exception{
         try{
             message.add(msg);
         }catch (Exception e)

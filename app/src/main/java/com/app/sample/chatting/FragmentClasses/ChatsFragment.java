@@ -178,7 +178,7 @@ public class ChatsFragment extends Fragment implements android.support.v4.app.Lo
     }
 
 
-    private void dialogDeleteMessageConfirm(final int count)
+    private void dialogDeleteMessageConfirm(final int count)throws Exception
     {
         try
         {
@@ -190,7 +190,11 @@ public class ChatsFragment extends Fragment implements android.support.v4.app.Lo
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i)
                 {
-                    mAdapter.removeSelectedItem();
+                    try {
+                        mAdapter.removeSelectedItem();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                     mAdapter.notifyDataSetChanged();
                     Snackbar.make(view, "Delete " + count + " items success", Snackbar.LENGTH_SHORT).show();
                     modeCallBack.onDestroyActionMode(actionMode);
@@ -248,7 +252,11 @@ public class ChatsFragment extends Fragment implements android.support.v4.app.Lo
             // Inflate a menu resource providing context menu items
             MenuInflater inflater = actionMode.getMenuInflater();
             inflater.inflate(R.menu.menu_multiple_select, menu);
-            ((ActivityMain) getActivity()).setVisibilityAppBar(false);
+            try {
+                ((ActivityMain) getActivity()).setVisibilityAppBar(false);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return true;
         }
 
@@ -263,7 +271,11 @@ public class ChatsFragment extends Fragment implements android.support.v4.app.Lo
         {
             if (menuItem.getItemId() == R.id.action_delete && mAdapter.getSelectedItemCount() > 0)
             {
-                dialogDeleteMessageConfirm(mAdapter.getSelectedItemCount());
+                try {
+                    dialogDeleteMessageConfirm(mAdapter.getSelectedItemCount());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             return false;
         }
