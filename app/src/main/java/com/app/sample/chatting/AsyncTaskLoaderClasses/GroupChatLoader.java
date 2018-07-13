@@ -57,9 +57,7 @@ public class GroupChatLoader extends AsyncTaskLoader<List<GroupChatViewModel>>
 
         if(checkconnectionflag==1)
         {
-            //String GroupID=temp.getPreferences(context,"GroupId");
             String Url = httpurl.getURl();
-            StringBuilder builder = new StringBuilder();
             try
             {
 

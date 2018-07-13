@@ -33,7 +33,7 @@ public class NotificationGenerate {
                             .setPriority(IMPORTANCE_HIGH)
                             .setAutoCancel(true)
                             .setContentText(Message);
-            Intent notificationIntent = new Intent();
+            Intent notificationIntent = new Intent(ctx,ActivityChatDetails.class);
             notificationIntent.putExtra("KEY_FID",FrndId);
             notificationIntent.putExtra("UserId",UserID);
             notificationIntent.putExtra("KEY_FNAME",Name);

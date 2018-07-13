@@ -51,16 +51,12 @@ import java.util.Random;
 public class ActivityGroupDetails extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<GroupChatViewModel>> {
 
     private BroadcastReceiver broadcastReceiver;
-    private String authHeader = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6Ijc5NzhjMjI3LWViMGItNGMwOS1iYWEyLTEwYmE0MjI4YWE4OSIsImNlcnRzZXJpYWxudW1iZXIiOiJtYWNfYWRkcmVzc19vZl9waG9uZSIsInNlY3VyaXR5U3RhbXAiOiJlMTAxOWNiYy1jMjM2LTQ0ZTEtYjdjYy0zNjMxYTYxYzMxYmIiLCJuYmYiOjE1MDYyODQ4NzMsImV4cCI6NDY2MTk1ODQ3MywiaWF0IjoxNTA2Mjg0ODczLCJpc3MiOiJCbGVuZCIsImF1ZCI6IkJsZW5kIn0.QUh241IB7g3axLcfmKR2899Kt1xrTInwT6BBszf6aP4";
     private HubConnection connection;
     public static String KEY_GROUP = "com.app.sample.chatting.UserGroupViewModel";
-    public static String KEY_GROUPID = "com.app.sample.chatting.GroupId";
-    public static String KEY_GROUPName = "com.app.sample.chatting.GroupName";
     TemporaryStorageSharedPreferences temp=new TemporaryStorageSharedPreferences();
     private Button btn_send;
     private EditText et_content;
     public  GroupChatAdapter madapter;
-    private List<GroupChatViewModel> message=new ArrayList<>();
     private ListView listview;
     private ActionBar actionBar;
     private UserGroupViewModel group;
@@ -69,7 +65,7 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
     static String groupid;
     public static String groupName;
     private ProgressDialog progressDialog;
-    public GroupChatMessageStatusAsyncTask groupChatMessageStatusAsyncTask=new GroupChatMessageStatusAsyncTask();
+
 
 
 
@@ -158,10 +154,10 @@ public class ActivityGroupDetails extends AppCompatActivity implements LoaderMan
             @Override
             public void run()
             {
-                groupChatMessageStatusAsyncTask.groupChatViewModel.setMessageID(Long.parseLong("101010101"));
-                groupChatMessageStatusAsyncTask.groupChatViewModel.setDate("2020");
-                groupChatMessageStatusAsyncTask.groupChatViewModel.setContent("_+&*^(%)$%#");
-                groupChatMessageStatusAsyncTask.group.add(groupChatMessageStatusAsyncTask.groupChatViewModel);
+                //groupChatMessageStatusAsyncTask.groupChatViewModel.setMessageID(Long.parseLong("101010101"));
+                //groupChatMessageStatusAsyncTask.groupChatViewModel.setDate("2020");
+                //groupChatMessageStatusAsyncTask.groupChatViewModel.setContent("_+&*^(%)$%#");
+                //groupChatMessageStatusAsyncTask.group.add(groupChatMessageStatusAsyncTask.groupChatViewModel);
                 madapter.notifyDataSetChanged();
             }
         });

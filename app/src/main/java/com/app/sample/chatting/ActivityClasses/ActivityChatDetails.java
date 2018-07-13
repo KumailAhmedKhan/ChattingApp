@@ -459,12 +459,12 @@ public class ActivityChatDetails extends AppCompatActivity implements LoaderMana
                 @Override
                 public void run()
                 {
-                    messagestatus.friendChatViewModel.setMessageId(Long.parseLong("101010101"));
-                    messagestatus.friendChatViewModel.setDate("2020");
-                    messagestatus.friendChatViewModel.setContent("_+&^%^&%^$%^");
-                    messagestatus.frnd.add(messagestatus.friendChatViewModel);
+                   // messagestatus.friendChatViewModel.setMessageId(Long.parseLong("101010101"));
+                   // messagestatus.friendChatViewModel.setDate("2020");
+                   // messagestatus.friendChatViewModel.setContent("_+&^%^&%^$%^");
+                    //messagestatus.frnd.add(messagestatus.friendChatViewModel);
                     //madapter.notifyAll();
-                    madapter.notifyDataSetChanged();
+                   // madapter.notifyDataSetChanged();
                 }
             });
 
