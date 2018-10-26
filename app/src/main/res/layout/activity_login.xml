@@ -141,17 +141,7 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Title"
                     android:textColor="@color/grey_dark" />
 
-                <TextView
-                    android:id="@+id/id_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/activity_vertical_margin"
-                    android:gravity="center"
-                    android:text="Don't you have an account please Register first!Click Here"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                    android:textColor="@android:color/background_dark"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+
 
 
 

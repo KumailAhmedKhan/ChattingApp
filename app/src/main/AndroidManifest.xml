@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
+
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.app.sample.chatting">
-    xmlns:tools="http://schemas.android.com/tools"
+
+    package="app.smartventure.lycoscommunicator.chatting">
+
+
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <uses-sdk tools:overrideLibrary="android.support.constraint"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/lycoslogo"
@@ -26,8 +32,10 @@
         </activity>
 
         <receiver
-            android:name=".CheckConnectionByBroadCastReceiverClass.CheckConnection"
-            android:enabled="true">
+            android:name="app.smartventure.lycoscommunicator.chatting.CheckConnectionByBroadCastReceiverClass.CheckConnection"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
@@ -64,7 +72,8 @@
         <service
             android:name=".SignalR.Services.SignalRConnectionService"
             android:enabled="true"
-            android:launchMode="singleTop">
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name=".SignalR.Services.SignalRConnectionService"/>
             </intent-filter>

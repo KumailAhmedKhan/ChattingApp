@@ -5,9 +5,9 @@ android {
     buildToolsVersion '27.0.3'
 
     defaultConfig {
-        applicationId "com.app.chatting"
+        applicationId "app.smartventure.lycoscommunicator.chatting"
         minSdkVersion 16
-        targetSdkVersion 24
+        targetSdkVersion 26
         versionCode 8
         versionName "3.0"
     }
